@@ -13,11 +13,20 @@ fn get_port() -> u16 {
 
 #[tokio::main]
 async fn main() {
-    let hello = warp::path!("hello" / String)
-        .map(|name| format!("Hello, {}!", name));
+    let health = warp::path!("health")
+        .map(|| format!("All Gucci"));
+
+    let other_path = warp::path!("other_path")
+        .map(|| format!("I'm Another Path"));
+
     let port : u16 = get_port();
+
     println!("Server is up and running on port {}", port);
-    warp::serve(hello)
+
+    let routes = health
+        .or(other_path);
+
+    warp::serve(routes)
         .run(([0, 0, 0, 0], port))
         .await;
 }
