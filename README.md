@@ -6,10 +6,16 @@
 
 Rust Smol was written for the purpose of exploring the creation of microservices in Rust.
 
-## Running With Docker
+## Features
 
-`docker build . -t rust-smol && docker run -e PORT=8080 rust-smol`
+### Rust Web Tier
 
-## Running Locally
+### Apache Cassandra Database
+
+## Running With Docker Compose
+
+`docker-compose build && docker-compose up`
+
+## Running the Rust-Service Locally
 
 `export PORT=8080 && cargo build && cargo run`
